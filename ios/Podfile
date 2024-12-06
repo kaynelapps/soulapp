@@ -1,14 +1,6 @@
-install! 'cocoapods', :disable_input_output_paths => true
-
 platform :ios, '12.0'
 
-ENV['COCOAPODS_DISABLE_STATS'] = 'true'
-
-project 'Runner', {
-  'Debug' => :debug,
-  'Profile' => :release,
-  'Release' => :release,
-}
+install! 'cocoapods', :disable_input_output_paths => true
 
 def flutter_root
   generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
@@ -38,11 +30,11 @@ post_install do |installer|
     flutter_additional_ios_build_settings(target)
     target.build_configurations.each do |config|
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
-      # Add these lines
-      config.build_settings['FRAMEWORK_SEARCH_PATHS'] ||= []
-      config.build_settings['FRAMEWORK_SEARCH_PATHS'] << '${PODS_CONFIGURATION_BUILD_DIR}/Flutter'
-      config.build_settings['FRAMEWORK_SEARCH_PATHS'] << '/Users/macbookair/Downloads/flutter/bin/cache/artifacts/engine/ios'
+      # Remove hardcoded paths for Codemagic compatibility
+      config.build_settings['FRAMEWORK_SEARCH_PATHS'] = [
+        '$(inherited)',
+        '${PODS_CONFIGURATION_BUILD_DIR}/Flutter'
+      ]
     end
   end
 end
-
