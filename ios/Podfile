@@ -1,9 +1,8 @@
 source 'https://cdn.cocoapods.org/'
 # Minimum iOS version
 platform :ios, '12.0'
+install! 'cocoapods', :deterministic_uuids => false
 
-# Don't track input/output paths
-install! 'cocoapods', :disable_input_output_paths => true
 
 # Flutter setup
 def flutter_root
@@ -24,6 +23,7 @@ flutter_ios_podfile_setup
 
 target 'Runner' do
   use_frameworks!
+
 
 pod 'connectivity_plus', :path => '.symlinks/plugins/connectivity_plus/ios'
 
