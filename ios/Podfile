@@ -27,8 +27,7 @@ target 'Runner' do
   use_frameworks!
   use_modular_headers!
   
-  # Explicit pod declarations
-  pod 'connectivity_plus', :path => '.symlinks/plugins/connectivity_plus/ios'
+
   
   # Flutter pods
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
