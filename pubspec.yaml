@@ -25,7 +25,7 @@ dependencies:
   intl: ^0.18.0  # For date/time formatting
   cached_network_image: ^3.3.0  # For efficient image loading
   shimmer: ^3.0.0  # For loading animations
-  connectivity_plus: 5.0.2
+  connectivity_plus: 6.1.0 
 
 
 dev_dependencies:
